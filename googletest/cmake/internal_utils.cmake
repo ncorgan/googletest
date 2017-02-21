@@ -156,6 +156,10 @@ function(cxx_library_with_type name type cxx_flags)
     set_target_properties(${name}
       PROPERTIES
       COMPILE_DEFINITIONS "GTEST_CREATE_SHARED_LIBRARY=1")
+  elseif(UNIX)
+    set_target_properties(${name}
+      PROPERTIES
+      COMPILE_FLAGS "-fPIC")
   endif()
   if (CMAKE_USE_PTHREADS_INIT)
     target_link_libraries(${name} ${CMAKE_THREAD_LIBS_INIT})
